@@ -7,7 +7,6 @@ from django.contrib.auth import login ,authenticate ,logout
 from .models import Profile , Exercise
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.hashers import make_password
-from passlib.handlers.django import django_pbkdf2_sha256
 # Create your views here.
 from django.contrib import messages
 
