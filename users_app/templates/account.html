@@ -1,0 +1,711 @@
+{% include "navbar.html" %}
+{% block content %}
+{% load static %}
+
+<style>
+    
+    #profile
+    {
+        position: absolute;
+        height: 100vh;
+            width: 100vw;
+            background-size:cover;
+            background-image:linear-gradient(rgba(255, 255, 255, 0.977),rgba(240, 236, 236, 0.8)),url('../../static/images/settings.png');
+}
+    #profile_img>img
+    {
+        width: 80px;
+        height: 80px;
+        border-radius: 40%;
+        position: absolute;
+        top: 40px;
+        right:0;
+        left: 1500px;
+        margin: auto;
+        z-index: 1;
+       
+    }
+    #profile_img>svg
+    {
+        width: 80px;
+        height: 80px;
+        border-radius: 40%;
+        position: absolute;
+        top: 40px;
+        width: 50px;
+        right:150px;
+        left: 1510px;
+        margin: auto;
+        z-index: 1;
+        transition: all 0.5s;
+    }
+  
+
+    #user
+    {
+        transition-delay: 0.5s;
+        transform: all 0.5s;
+        position: absolute;
+        transform: translateY(30px);
+        display: grid;
+        right: 0;
+        top: 30px !important;
+    }
+
+   
+ 
+  
+  
+    .moverotatedefault
+    {
+        transform:translate(0,0) rotate(-100deg);
+    }
+  
+  
+ 
+ 
+   
+   #userdropdown
+   {
+    width: 400px;
+    height: 600px;
+    content: "";
+    background-image: linear-gradient(rgb(240, 237, 237),rgb(208, 211, 213));
+    display: grid;
+    border-radius: 10px;
+    border:3px solid #123 ;
+   }
+   
+
+   .moverotate
+   {
+        transform:translate(-50%,0) rotate(100deg);
+        cursor:pointer;
+        z-index: 20;
+        
+   }
+
+   .hide
+   {
+            visibility:hidden;
+              opacity:0;
+              filter: blur(10px);
+            transition: all 0.5s;
+           
+   }
+   .showdown
+   {
+            
+    visibility:visible !important;
+    opacity:1 !important;
+    transform: translateY(10px) !important;
+    filter: blur(0px);
+
+   }
+    
+
+
+
+#main_body
+{
+    width: 100vw;
+    height: 150vh;
+    background-color: rgb(242, 242, 242);
+    z-index: 1;
+    
+}
+
+#second_body{
+    width: 100vw;
+    height: 150px;
+    position:absolute;
+    background-image:linear-gradient(#d9d9f9,#ffffff);
+    z-index: 2;
+}
+
+#left_side{
+    height: 150vh;
+    width: 200px;
+    position: absolute;
+    background-color: rgb(42, 41, 41);
+    z-index: 3;
+}
+#left_side>p
+{
+    color: rgb(239, 239, 239);
+    padding-top: 50px;
+}
+.tools
+{
+    position: relative;
+    vertical-align: middle;
+    padding: 5px;
+    padding-top:50px;
+    top: 30px;
+    
+}
+.tools>p
+{
+    color: white;
+    padding-left: 40px;
+    font-size: 17px;
+}
+.tools>svg{
+    color: white;
+    position: absolute;
+    left: 5px;
+   
+}
+
+#header
+{
+    background: rgb(212, 212, 212);
+  width:fit-content;
+  height: fit-content;
+  position: absolute;
+left: 760px;
+border-radius: 60%;
+top: 50px;
+}
+#header>img
+{
+    width: 180px;
+    height: 170px;
+    border-radius: 10%;
+    overflow: hidden;
+}
+.Basic_info{
+    position:relative;
+    width: 500px;
+    height: fit-content;
+    margin: auto;
+    top: 200px;
+    right: 300px;
+    background-color: white;
+    
+}
+#Basic_info>p{
+    color: rgb(6, 6, 6);
+    font-size: 20px;
+}
+
+
+.basic{
+    position: relative;
+    display: flex;
+    padding: 5px;
+    border: 1px solid #c9c9c9;
+    z-index: 5;
+    
+}
+.basic>h3{
+    font-size: 18px;
+    padding-left: 20px;
+    padding-top: 15px;
+}
+.basic>p{
+    position: relative;
+    text-align: center;
+    padding:15px;
+    padding-left: 30px;
+}
+.basic>a
+{
+    position: relative;
+    text-align: center;
+    padding:15px;
+    padding-left: 30px;
+}
+
+#Wrap_basic>h1{
+    position:relative;
+    font-size: 25px;
+
+    width: max-content;
+    height: max-content;
+    margin: auto;
+    top: 200px;
+    right: 300px;
+    padding-bottom: 15px;  
+}
+#Wrap_4>h1{
+    position:relative;
+    font-size: 25px;
+
+   width: max-content;
+   height: max-content;
+   margin: auto;
+   top: 200px;
+   right: 300px;
+   padding-bottom: 15px;  
+}
+
+#Wrap_system>h1
+{
+    position:relative;
+    font-size: 25px;
+
+   width: max-content;
+   height: max-content;
+   margin: auto;
+   top: 200px;
+   right: 300px;
+   padding-bottom: 15px;  
+}
+
+#Wrap_privacy>h1
+{
+    position:relative;
+   font-size: 25px;
+   width: max-content;
+   height: max-content;
+   margin: auto;
+   top: 200px;
+   right: 300px;
+   padding-bottom: 15px;  
+}
+#Wrap_privacy
+{
+    position: absolute;
+    right: 0;
+    left: 1000px;
+    padding-left: 100px;
+    top: 0;
+    bottom: 0;
+}
+
+.btn{
+    background-color:rgb(16, 139, 196);
+    border: 1px solid #000000;
+    width: 100%;
+    color: white;
+    
+}
+
+
+body{
+  background-color: black;
+}
+
+
+.form-control{
+ width: 100%;
+ height: 50px;
+ text-align: center;
+ left: 0;
+ right: 0;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ font-family:Arial, Helvetica, sans-serif;
+}
+
+#passwords{
+  border: 1px solid #000000;
+  background-color: white;
+  margin-bottom: 20px;
+  text-align: center;
+  
+}
+
+.black{
+    background-color: transparent;
+    box-shadow: 5px 5px 5px 5px;
+}
+#old_passsword{
+  border: 1px solid #111;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#page{
+    pointer-events: none;
+    position: absolute;
+  top: 150px;
+  box-shadow: 5px 5px 5px 5px;
+  z-index: 5;
+  height: fit-content;
+  width: fit-content;
+        width: 20%;
+        margin:  auto;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        background: #ebebeb;
+        transition: all 0.5s;
+        transform: translateY(-150px);
+        filter: blur(50%);
+        opacity: 0;
+        visibility: none;
+}
+.page_appear{
+    opacity: 1 !important;
+    visibility: 1 !important;
+    transform: translateY(0px) !important;
+    filter: blur(0) !important;
+    pointer-events: all !important;
+}
+#page>h3{
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+#subm
+{
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid #111;
+  color: white;
+  background-color: blue;
+}
+
+
+.mb-3{
+    background-color: #ffffff;
+    border: 1px solid #111;
+}
+
+
+#account_settings
+{
+    position: absolute;
+    z-index: 5;
+    text-align: center;
+    background-color: rgb(243, 243, 243);
+    border-radius: 2%;
+    border: 1px solid black;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 300px;
+    height: fit-content;
+    transform: translateY(-200px);
+    opacity: 0;
+    visibility: 0;
+    pointer-events: none;
+    transition: all 0.5s;
+    filter: blur(100%);
+}
+.form-label
+{
+
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.update_appear
+{
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events:all !important; 
+    transform: translateY(0px) !important;
+    filter: blur(0) !important;
+}
+
+</style>
+
+
+  <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  
+
+<div id="user" class="hide" >
+        <div  id="userdropdown" >
+            <a href="{% url 'update_profile' request.user.id %}">  Update profile</a>
+            <a href="{% url 'logout' %}">Logout</a>
+            <a href="#">Stats</a>
+            <a href="#">Goals</a>
+        </div>
+    </div>
+    <div id="profile_img"  >
+        <svg id="img_svg" onmouseenter=showsetting() onmouseleave=showsetting2() onclick=showdiv() xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="m9.25 22l-.4-3.2q-.325-.125-.612-.3q-.288-.175-.563-.375L4.7 19.375l-2.75-4.75l2.575-1.95Q4.5 12.5 4.5 12.337v-.675q0-.162.025-.337L1.95 9.375l2.75-4.75l2.975 1.25q.275-.2.575-.375q.3-.175.6-.3l.4-3.2h5.5l.4 3.2q.325.125.613.3q.287.175.562.375l2.975-1.25l2.75 4.75l-2.575 1.95q.025.175.025.337v.675q0 .163-.05.338l2.575 1.95l-2.75 4.75l-2.95-1.25q-.275.2-.575.375q-.3.175-.6.3l-.4 3.2Zm2.8-6.5q1.45 0 2.475-1.025Q15.55 13.45 15.55 12q0-1.45-1.025-2.475Q13.5 8.5 12.05 8.5q-1.475 0-2.488 1.025Q8.55 10.55 8.55 12q0 1.45 1.012 2.475Q10.575 15.5 12.05 15.5Z"/></svg>
+        <img src="{{ profile.profile_image.url }}" alt="">
+    </div>
+    
+    <div id="main" >
+        <div id="left_side" >
+            <div id="header" >
+                <img src="{{profile.profile_image.url}}" alt="">
+            </div>  
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M14 9.9V8.2q.825-.35 1.688-.525Q16.55 7.5 17.5 7.5q.65 0 1.275.1q.625.1 1.225.25v1.6q-.6-.225-1.212-.337Q18.175 9 17.5 9q-.95 0-1.825.238Q14.8 9.475 14 9.9Zm0 5.5v-1.7q.825-.35 1.688-.525Q16.55 13 17.5 13q.65 0 1.275.1q.625.1 1.225.25v1.6q-.6-.225-1.212-.337q-.613-.113-1.288-.113q-.95 0-1.825.225T14 15.4Zm0-2.75v-1.7q.825-.35 1.688-.525q.862-.175 1.812-.175q.65 0 1.275.1q.625.1 1.225.25v1.6q-.6-.225-1.212-.337q-.613-.113-1.288-.113q-.95 0-1.825.238q-.875.237-1.675.662ZM6.5 16q1.175 0 2.288.262q1.112.263 2.212.788V7.2q-1.025-.6-2.175-.9Q7.675 6 6.5 6q-.9 0-1.787.175Q3.825 6.35 3 6.7v9.9q.875-.3 1.738-.45Q5.6 16 6.5 16Zm6.5 1.05q1.1-.525 2.213-.788Q16.325 16 17.5 16q.9 0 1.763.15q.862.15 1.737.45V6.7q-.825-.35-1.712-.525Q18.4 6 17.5 6q-1.175 0-2.325.3q-1.15.3-2.175.9ZM12 20q-1.2-.95-2.6-1.475Q8 18 6.5 18q-1.325 0-2.775.5T1 20.05V5.55Q2.1 4.8 3.588 4.4Q5.075 4 6.5 4q1.45 0 2.838.375Q10.725 4.75 12 5.5q1.275-.75 2.663-1.125Q16.05 4 17.5 4q1.425 0 2.913.4Q21.9 4.8 23 5.55v14.5Q21.75 19 20.288 18.5Q18.825 18 17.5 18q-1.5 0-2.9.525T12 20Zm-5-8.475Z"/> </svg>               
+                <p>Problems solved</p>
+            </div>
+
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 1024 1024"><path fill="currentColor" d="M918.4 201.6c-6.4-6.4-12.8-9.6-22.4-9.6H768V96c0-9.6-3.2-16-9.6-22.4C752 67.2 745.6 64 736 64H288c-9.6 0-16 3.2-22.4 9.6C259.2 80 256 86.4 256 96v96H128c-9.6 0-16 3.2-22.4 9.6c-6.4 6.4-9.6 16-9.6 22.4c3.2 108.8 25.6 185.6 64 224c34.4 34.4 77.56 55.65 127.65 61.99c10.91 20.44 24.78 39.25 41.95 56.41c40.86 40.86 91 65.47 150.4 71.9V768h-96c-9.6 0-16 3.2-22.4 9.6c-6.4 6.4-9.6 12.8-9.6 22.4s3.2 16 9.6 22.4c6.4 6.4 12.8 9.6 22.4 9.6h256c9.6 0 16-3.2 22.4-9.6c6.4-6.4 9.6-12.8 9.6-22.4s-3.2-16-9.6-22.4c-6.4-6.4-12.8-9.6-22.4-9.6h-96V637.26c59.4-7.71 109.54-30.01 150.4-70.86c17.2-17.2 31.51-36.06 42.81-56.55c48.93-6.51 90.02-27.7 126.79-61.85c38.4-38.4 60.8-112 64-224c0-6.4-3.2-16-9.6-22.4zM256 438.4c-19.2-6.4-35.2-19.2-51.2-35.2c-22.4-22.4-35.2-70.4-41.6-147.2H256v182.4zm390.4 80C608 553.6 566.4 576 512 576s-99.2-19.2-134.4-57.6C342.4 480 320 438.4 320 384V128h384v256c0 54.4-19.2 99.2-57.6 134.4zm172.8-115.2c-16 16-32 25.6-51.2 35.2V256h92.8c-6.4 76.8-19.2 124.8-41.6 147.2zM768 896H256c-9.6 0-16 3.2-22.4 9.6c-6.4 6.4-9.6 12.8-9.6 22.4s3.2 16 9.6 22.4c6.4 6.4 12.8 9.6 22.4 9.6h512c9.6 0 16-3.2 22.4-9.6c6.4-6.4 9.6-12.8 9.6-22.4s-3.2-16-9.6-22.4c-6.4-6.4-12.8-9.6-22.4-9.6z"/></svg>                <p>Tier list</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M2 20V4h20v16Zm2-2h16V6H4Zm2-5h9v-2H6Zm0-3h9V8H6ZM4 6v12Z"/></svg>                <p>Goals and achievements</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg"width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M4 4h16v12H5.17L4 17.17V4m0-2c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4zm2 10h12v2H6v-2zm0-3h12v2H6V9zm0-3h12v2H6V6z"/></svg>                <p>Messages</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32"><path fill="currentColor" d="M9 7c-3.3 0-6 2.7-6 6c0 1.984.977 3.75 2.469 4.844C2.832 19.152 1 21.864 1 25h2c0-3.324 2.676-6 6-6s6 2.676 6 6h2c0-3.324 2.676-6 6-6s6 2.676 6 6h2c0-3.137-1.832-5.848-4.469-7.156A6.006 6.006 0 0 0 29 13c0-3.3-2.7-6-6-6s-6 2.7-6 6c0 1.984.977 3.75 2.469 4.844A8.063 8.063 0 0 0 16 21.125a8.063 8.063 0 0 0-3.469-3.281A6.006 6.006 0 0 0 15 13c0-3.3-2.7-6-6-6zm0 2c2.223 0 4 1.777 4 4s-1.777 4-4 4s-4-1.777-4-4s1.777-4 4-4zm14 0c2.223 0 4 1.777 4 4s-1.777 4-4 4s-4-1.777-4-4s1.777-4 4-4z"/></svg>                <p>Friends</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16"><path fill="currentColor" d="M15.09 12.79a1 1 0 0 0-.086-1.638L15 5.33L14 6v5.15a1.001 1.001 0 0 0-.092 1.629l-.378.502a2.48 2.48 0 0 0-.53 1.498v1.222h.815a.88.88 0 0 0 .853-.664l.331-1.336v2h1v-1.21a2.486 2.486 0 0 0-.534-1.505zM8 0L0 4l8 5l8-5l-8-4z"/><path fill="currentColor" d="M8 10L3 6.67v1.71C3 9.29 5.94 12 8 12s5-2.71 5-3.62V6.67z"/></svg>                <p>Academy informations</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M21 3H3a2 2 0 0 0-2 2v3h2V5h18v14h-7v2h7a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2M1 18v3h3a3 3 0 0 0-3-3m0-4v2a5 5 0 0 1 5 5h2a7 7 0 0 0-7-7m0-4v2a9 9 0 0 1 9 9h2c0-6.08-4.93-11-11-11m10 1.09v2L14.5 15l3.5-1.91v-2L14.5 13L11 11.09M14.5 6L9 9l5.5 3L20 9l-5.5-3Z"/></svg>                <p>Free tutorials</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M12.8 11V5h2v2.6l5-5L21.2 4l-5 5h2.6v2h-6Zm7.15 10q-3.225 0-6.287-1.438t-5.425-3.8q-2.363-2.362-3.8-5.425T3 4.05q0-.45.3-.75t.75-.3H8.1q.35 0 .625.225t.325.575l.65 3.5q.05.35-.013.638T9.4 8.45L6.975 10.9q1.05 1.8 2.638 3.375T13.1 17l2.35-2.35q.225-.225.588-.338t.712-.062l3.45.7q.35.075.575.338T21 15.9v4.05q0 .45-.3.75t-.75.3ZM6.025 9l1.65-1.65L7.25 5H5.025q.125 1.025.35 2.025T6.025 9Zm8.95 8.95q.975.425 1.988.675T19 18.95v-2.2l-2.35-.475l-1.675 1.675ZM6.025 9Zm8.95 8.95Z"/></svg>                <p>Contact</p>
+
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg"width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M7 19h10q-.1-1.225-.75-2.25t-1.7-1.625l.95-1.7q.05-.1.025-.225t-.15-.175q-.1-.05-.213-.025t-.162.125l-.975 1.75q-.5-.2-1-.313T12 14.45q-.525 0-1.025.113t-1 .312L9 13.125Q8.95 13 8.838 13t-.238.05l-.1.375l.95 1.7q-1.05.6-1.7 1.625T7 19Zm2.75-1.5q-.2 0-.35-.15T9.25 17q0-.2.15-.35t.35-.15q.2 0 .35.15t.15.35q0 .2-.15.35t-.35.15Zm4.5 0q-.2 0-.35-.15t-.15-.35q0-.2.15-.35t.35-.15q.2 0 .35.15t.15.35q0 .2-.15.35t-.35.15ZM6 22q-.825 0-1.413-.588T4 20V4q0-.825.588-1.413T6 2h8l6 6v12q0 .825-.588 1.413T18 22H6Zm7-13V4H6v16h12V9h-5ZM6 4v5v-5v16V4Z"/></svg>                <p>About us</p>
+            </div>
+
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg"width="30" height="30" viewBox="0 0 24 24"><path fill="currentColor" d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15c0-1.09 1.01-1.85 2.7-1.85c1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61c0 2.31 1.91 3.46 4.7 4.13c2.5.6 3 1.48 3 2.41c0 .69-.49 1.79-2.7 1.79c-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55c0-2.84-2.43-3.81-4.7-4.4z"/></svg>                <p>Support our content!</p>
+            </div>
+            <div class="tools" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16"><path fill="currentColor" d="M3.5 2a.5.5 0 0 0-.447.276l-2 4a.5.5 0 0 0 .059.54l6.5 8a.5.5 0 0 0 .776 0l6.5-8a.5.5 0 0 0 .06-.54l-2-4A.5.5 0 0 0 12.5 2h-9ZM2.309 6l1.5-3h2.05l-.75 3h-2.8Zm.241 1h2.583l1.613 5.164L2.55 7Zm3.63 0h3.64L8 12.823L6.18 7Zm4.688 0h2.582l-4.196 5.164L10.868 7Zm2.823-1h-2.8l-.75-3h2.05l1.5 3ZM9.86 6H6.14l.75-3h2.22l.75 3Z"/></svg>           <p>Premium!</p>
+            </div>
+        </div>
+        <div id="second_body" >
+
+        </div>
+        <div id="main_body" >
+                <div id="Wrap_basic" >
+                
+                    <h1>Basic Information</h1>
+                    <div class="Basic_info">
+                        <div class="basic">
+                            
+                          <h3>First Name:</h3> <p> {{profile.name}}</p>
+                        </div>
+                        <div class="basic">
+                            <h3>Last Name</h3><p>  {{profile.last_name}}</p>
+                        </div>
+                        <div class="basic">
+                            <h3>Student id:</h3><p>  "1234"</p>
+                        </div>
+                        <div   class="basic">
+                            <h3>Password</h3> <p  style="cursor:pointer; color:blue "  onclick="change_password()" >Change password</p>
+                    </div>
+
+                </div>
+            </div>
+            <div id="Wrap_system" >
+                
+                <h1>Aditional Information</h1>
+                <div class="Basic_info">
+                    <div class="basic">
+                        
+                      <h3>Gender</h3> <p> Masculine</p>
+                    </div>
+                    <div class="basic">
+                        <h3>Age:</h3><p>  25<p>
+                    </div>
+                    <div class="basic">
+                        <h3>Country :</h3><p>  None</p>
+                    </div>
+                    <div class="basic">
+                        <h3>City</h3> <p> None</p>
+                    </div>
+                </div>
+
+            </div>
+          
+           
+            <div id="Wrap_privacy" >
+                
+                <h1>System settings</h1>
+                <div class="Basic_info">
+                    <div class="basic">
+                        
+                      <h3>Language:</h3> <p> english</p>
+                    </div>
+                    <div class="basic">
+                        <h3>Privacy settings:</h3><p>Friends can view</p>
+                    </div>
+                    <div class="basic">
+                        <h3>Notifications:</h3><p>  View all</p>
+                    </div>
+                    <div class="basic">
+                        <h3>Background:</h3> <p>Classic</p>
+                </div>
+
+            </div>
+
+
+
+            <div id="Wrap_4" >
+                
+                <div id="Wrap_4" >
+                    <h1>System settings</h1>
+                    <div class="Basic_info">
+                        <div class="basic">
+                            
+                          <h3>Delete account:</h3><a data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Delete</a> 
+ 
+                        </div>
+                        <div class="basic">
+                            <h3>Update account:</h3><a onclick="update_account()"  href="#">Update</a>
+                        </div>
+                        <div class="basic">
+                            <h3>Privacy:</h3><a href="">Privacy document</a>
+                        </div>
+                        <div class="basic">
+                            <h3>Get premium!</h3> <a href="">Click here!</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'delete_account' profile.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="delete!">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input  class="btn btn-primary" type="submit" value="delete!">
+              </button>
+            </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <div id="page" >
+
+        <h3>Change password</h3>
+      <form action="{% url 'change_password' request.user.id %}" id="form" method="POST">
+          {% csrf_token %} 
+          <div id="passwords">
+            {{form.password1}}
+            {{form.password2}}
+         </div>
+         
+      
+        
+          <input id="old_passsword" type="text" placeholder="old password" name="oldpassword" >
+          <input id=subm type="submit">
+              
+         
+      </form>
+      </div>
+
+
+     
+            <form id="account_settings" method="POST" action="{% url 'update_profile' request.user.id %}" enctype="multipart/form-data" >
+                {%csrf_token%}
+                <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                {{formprofile.email}}
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">First name</label>
+                    {{formprofile.name}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Second name</label>
+                    {{formprofile.last_name}}
+                </div>
+                <div class="mb-3"  >
+                    <label for="exampleInputEmail1" class="form-label">Profile img</label>
+                    {{formprofile.profile_image}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">username</label>
+                    {{formprofile.username}}
+                </div>
+                
+                <input class="btn btn-primary" type="submit" value="update">
+                </form>
+    </div>
+
+
+<script>
+ var form_fields = document.getElementsByTagName('input')
+   form_fields[5].placeholder='repet password...';
+  form_fields[4].placeholder="new password...";
+
+  for (var field in form_fields){	
+  form_fields[field].className += 'form-control'
+  }
+
+
+  function update_account()
+  {
+    //update_appear
+    var x=document.getElementById("account_settings")
+    x.classList.toggle('update_appear')
+  }
+  function change_password()
+  {
+    let bttn2=document.getElementById('page')
+    bttn2.classList.toggle('page_appear')
+   
+    let x=document.getElementById("main_body")
+    let y=document.getElementById("left_side")
+    let z=document.getElementById("second_body")
+    x.classList.toggle('black')
+    y.classList.toggle('black')
+    z.classList.toggle('black')
+
+    
+  }
+
+   function showsetting()
+   {
+        let setting = document.getElementById('img_svg');
+        setting.classList.add('moverotate');
+    
+
+        console.log('1');
+   }
+   function showsetting2()
+   {
+        let setting = document.getElementById('img_svg');
+        setting.classList.remove('moverotate');
+   }
+   
+   function showdiv()
+   {
+    let button = document.getElementById('user');
+    button.classList.toggle('showdown')
+
+   }
+   
+</script>
+
+
+
+
+
+
+{% endblock %}

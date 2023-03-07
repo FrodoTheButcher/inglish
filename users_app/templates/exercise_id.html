@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            width: fit-content;
+            height: fit-content;
+            
+            z-index: 0;
+            margin-left: 15px;
+        }
+        #subm
+        {
+            background-color: transparent;
+            color: rgb(0, 0, 0);
+            width: 100px;
+            margin-top: 20px;            
+        }
+        #subm:hover
+        {
+            background-color: aliceblue;
+        }
+        #tags
+        {
+            position: relative;
+            display: flex;
+            text-align: center;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid black;
+            width: fit-content;
+            background-color: antiquewhite;
+        }
+        .tag{
+            margin: 10px;
+            border: 1px solid black;
+            background-color: white;
+        }
+        p{
+            font-size: 20px;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(75, 74, 74);
+        }
+        h3
+        {
+            font-family:Arial, Helvetica, sans-serif;
+            font-size: 22px;
+            color: black;
+        }
+        li{
+            font-size: 22px;
+            color: rgb(57, 57, 58);
+            width: 500px;
+        }
+        #helper
+        {
+            width: fit-content;
+            height: fit-content;
+            border: 1px solid #0c0c0c;
+            background-color: #ffffff;
+        }
+        #helper_title
+        {
+            display: flex;
+            margin-top: 40px;
+        }
+        #code
+        {
+           position: absolute;
+           right:0;
+           top: 0;
+           left: 0;
+           bottom: 0;
+           margin: auto;
+           margin-right: 20px;
+        }
+        h3{
+            width: fit-content;
+            margin-right: 0px;
+        }
+        #submit_code
+        {
+            width: 500px;
+            height: 500px;
+            background-color: rgb(255, 255, 255);
+            bottom: 0;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+        #submbtn
+        {
+            position: relative;
+            color: white;
+            background-color: rgb(16, 59, 214);
+            bottom: 0;
+        }
+       
+        #code>h2
+        {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 18px;
+        }   
+        #ILUSTRATION
+        {
+            position: relative;
+            text-align: center;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+        }
+        #description_problem{
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Name</h3>
+    <p>{{ex.Name}}</p>
+
+    <p id="description_problem" >{{ex.description}}</p>
+    <h3>Example for input and output</h3>
+    <p>{{ex.Default}}</p>
+    
+    <h3>Now try to add your own answers here!</h3>
+    <form action="{% url 'solve' pk=ex.id  pk2=request.user.id %}" method="POST">
+        {% csrf_token %}
+
+        <ol>
+        <p>First input example</p>
+        <li>{{ex.Exemple1}}</li>
+        <input type="text" placeholder="Example 1 answer" name="ex1">
+
+        <p>Second input example</p>
+        <input type="text" placeholder="Example 2 answer" name="ex2">
+
+        <li>{{ex.Exemple2}}</li>
+        <input id="subm" type="submit" placeholder="submit">
+
+    </ol>
+    </form>
+   
+    <h5>Related to</h5>
+    <ol>
+        <div id="tags">
+            <div class="tag" >
+                <p>Tag name </p>
+                <small>{{ex.tag_name}}</small>
+            </div>
+            <div class="tag" >
+                <p>Category </p> 
+                <small>{{ex.category}}</small>
+            </div>
+            <div class="tag" >
+                <p>Difficulty </p> 
+                <small>{{ex.dificulty}}</small>
+            </div>
+        </div>
+       
+    </ol>
+    <div id="code" >
+       
+    
+       
+            <h2>Feel pro? Enter your code! It can become the main answer!</h2>
+            <small>Copy-paste it!</small>
+    
+
+        <form  action="">
+
+            <textarea name="" id="submit_code" cols="30" rows="10"></textarea>
+            <input id="submbtn" type="submit" placeholder="Submit!">
+        </form>
+    </div>
+    <div id="ILUSTRATION" >
+        <p>Ilustration</p>
+        <img  src="{{ ex.Image.url }}" alt="">
+    </div>
+    <h3 id="helper_title" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18q.525 0 .888-.363t.362-.887q0-.525-.363-.888T12 15.5q-.525 0-.888.363t-.362.887q0 .525.363.888T12 18Zm-.9-3.85h1.85q0-.9.2-1.325T14 11.75q.875-.875 1.237-1.463T15.6 8.95q0-1.325-.9-2.137T12.275 6q-1.375 0-2.337.675T8.6 8.55l1.65.65q.175-.675.7-1.087t1.225-.413q.675 0 1.125.363t.45.962q0 .425-.275.9t-.925 1.05q-.825.725-1.138 1.388T11.1 14.15ZM5 21q-.825 0-1.413-.588T3 19V5q0-.825.588-1.413T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.588 1.413T19 21H5Zm0-2h14V5H5v14ZM5 5v14V5Z"/></svg>
+
+         Getting stuck?Don't worry! Bonus for those that need some help!  </h3>
+    <p id="helper" > {{ex.Help}}</p>
+</body>
+</html>

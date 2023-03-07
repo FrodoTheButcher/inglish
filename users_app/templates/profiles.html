@@ -1,0 +1,20 @@
+{% include 'navbar.html' %}
+{% load static %}
+{% block content %}
+
+{% for profile in profiles %}
+
+<a href="{% url 'account' profile.id%}">Profile</a>
+<img src="   {{profile.profile_image.url}} ">
+
+{% for skill in profile.skill_set.all %}
+<small>{{skill}}</small>
+{% endfor %}
+{% for lista in profile.todo_set.all %}
+<small>{{lista}}</small>
+{% endfor %}
+
+
+{% endfor %}
+
+{% endblock %}
